@@ -50,6 +50,7 @@ between them, screen reader support, highlight by character keys etc.
   - [onIsOpenChange](#onisopenchange)
   - [onInputValueChange](#oninputvaluechange)
   - [onStateChange](#onstatechange)
+  - [selectedItemChanged](#selecteditemchanged)
   - [highlightedIndex](#highlightedindex)
   - [isOpen](#isopen)
   - [selectedItem](#selecteditem)
@@ -400,6 +401,22 @@ pass it as props, rather than letting downshift control all its state itself.
 > handlers directly on the elements (make sure to use the prop getters though!
 > For example: `<button onBlur={handleBlur} />` should be
 > `<button {...getToggleButtonProps({onBlur: handleBlur})} />`).
+
+### selectedItemChanged
+
+> `function(prevItem: any, item: any)` | optional, defaults to
+> `(prevItem, item) => prevItem !== item`
+
+This function is called between renders to check if the controlled prop
+`selectedItem` has changed from the previous render. The function gives a result
+in boolean whether the `selectedItem` props has changed.
+
+- `prevItem`: The previous `selectedItem` props before the current render
+  occurred.
+- `item`: The current `selectedItem` props after the current render occurred.
+
+This can be useful if you're adding a step to process based on whether the
+`selectedItem` has changed.
 
 ### highlightedIndex
 
